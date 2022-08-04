@@ -11,6 +11,18 @@ describe('Matcher test',()=>{
     expect(sum(1,2)).toBe(3);
   })
 
+  //配列で操作
+
+  test.each([
+    [1,1,2],
+    [2,3,5],
+    [5,5,10],
+    [3,4,7],
+    [3,3,6]
+  ])('sum(%d,%d)',(a,b,expected)=>{
+    expect(sum(a,b)).toBe(expected)
+  })
+
   //オブジェクトの値の比較を行いたい場合はtoEqualを使う
   test('object assignment', () => {
     const data:IObject = {one: 1};
