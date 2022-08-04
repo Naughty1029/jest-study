@@ -1,4 +1,4 @@
-import { sum } from "../Jest";
+import { compileAndroidCode, sum } from "../Matcher";
 
 interface IObject {
   [key:string]:number
@@ -41,5 +41,21 @@ describe('Matcher test',()=>{
     expect(value).toEqual(4);
   })
 
+  //toMatch で、文字列に対して正規表現でマッチするか確認できる
+  test('match string test',()=>{
+    expect('team').not.toMatch(/I/);
+    expect('Christoph').toMatch(/stop/);
+  })
+
+  //toContain を使用して、配列や反復可能なオブジェクトに特定のアイテムが含まれているかどうかを確認できる
+  const shoppingList = ['diapers','kleenex','trash bags','paper towels','milk'];
+  test('the shopping list has milk on it',()=>{
+    expect(shoppingList).toContain('milk');
+  })
+
+  //関数が呼び出し時に例外を投げることをテストするには、 toThrow を使用
+  test('compiling android goes as expected', () => {
+    expect(()=> compileAndroidCode()).toThrow(Error);
+  })
   
 });
